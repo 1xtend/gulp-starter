@@ -1,8 +1,18 @@
-/*===============Imports===============*/
+// Scss Functions
 @import 'functions.scss';
+
+/*===Reset Styles===*/
 @import 'nullstyle.scss';
+
+/*===Vars===*/
 @import 'vars.scss';
+
+/*===BEM Blocks===*/
 @import 'common.scss';
+
+/*===Burger===*/
+// @import 'burger.scss';
+
 /*===============Global styles===============*/
 
 body {
@@ -11,6 +21,7 @@ body {
 .wrapper {
   min-height: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .container {

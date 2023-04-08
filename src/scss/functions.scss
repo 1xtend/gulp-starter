@@ -1,35 +1,35 @@
 @use 'sass:math';
 
-// font-size in html
+/*===============Default font-size===============*/
 $font-size: 16px;
 
-// cut unit
+/*===============Cut unit===============*/
 @function cut($value) {
   @return math.div($value, ($value * 0 + 1));
 }
 
-// px to rem
+/*===============PX to REM===============*/
 @function rem($px) {
   @return math.div(cut($px), cut($font-size)) + rem;
 }
 
-// px to em
+/*===============PX to EM===============*/
 @function em($px, $fz) {
   @return math.div(cut($px), cut($fz)) + em;
 }
 
-// px to %
+/*===============PX to %===============*/
 @function lh($lh, $px) {
   @return math.div(cut($lh), cut($px));
 }
 
-// Properties for text
-@mixin textPropertiesColor($fz, $lh, $cl) {
+/*===============Text Mixins===============*/
+@mixin text($fz, $lh) {
+  font-size: rem($fz);
+  line-height: lh($lh, $fz);
+}
+@mixin textColor($fz, $lh, $cl) {
   font-size: rem($fz);
   line-height: lh($lh, $fz);
   color: $cl;
-}
-@mixin textProperties($fz, $lh) {
-  font-size: rem($fz);
-  line-height: lh($lh, $fz);
 }

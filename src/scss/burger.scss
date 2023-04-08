@@ -1,0 +1,54 @@
+.burger {
+  position: relative;
+  display: inline-block;
+  height: rem(18);
+  width: rem(30);
+  z-index: 5;
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  &.is-active &__inner {
+    width: 0;
+    opacity: 0;
+  }
+
+  &.is-active::before {
+    transform: rotate(-45deg);
+    top: calc(50% - rem(1));
+  }
+
+  &.is-active::after {
+    transform: rotate(45deg);
+    bottom: calc(50% - rem(1));
+  }
+
+  &::before,
+  &::after {
+    content: '';
+  }
+
+  &__inner,
+  &::before,
+  &::after {
+    position: absolute;
+    background-color: #000;
+    height: rem(2);
+    width: 100%;
+    right: 0;
+    border-radius: rem(2);
+    transition: all 0.2s ease-in-out;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+
+  &__inner {
+    top: calc(50% - rem(1));
+  }
+}
