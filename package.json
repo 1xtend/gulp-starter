@@ -1,7 +1,7 @@
 {
-  "name": "gulp",
+  "name": "gulp-starter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Gulp-starter for comfortable work",
   "main": "gulpfile.js",
   "type": "module",
   "scripts": {
