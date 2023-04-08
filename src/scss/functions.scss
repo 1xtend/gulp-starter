@@ -1,18 +1,26 @@
+@use 'sass:math';
+
 // font-size in html
 $font-size: 16px;
 
+// cut unit
+@function cut($value) {
+  @return math.div($value, ($value * 0 + 1));
+}
+
 // px to rem
 @function rem($px) {
-  @return ($px / $font-size) + rem;
+  @return math.div(cut($px), cut($font-size)) + rem;
+}
+
+// px to em
+@function em($px, $fz) {
+  @return math.div(cut($px), cut($fz)) + em;
 }
 
 // px to %
 @function lh($lh, $px) {
-  $calc: ($lh / $px) * 100;
-
-  $result: round($calc);
-
-  @return #{$result} + '%';
+  @return math.div(cut($lh), cut($px));
 }
 
 // Properties for text
