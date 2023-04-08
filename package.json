@@ -10,7 +10,7 @@
     "zip": "gulp deployZIP --build",
     "svgSprive": "gulp svgSprive"
   },
-  "author": "",
+  "author": "1xtend",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "latest",
