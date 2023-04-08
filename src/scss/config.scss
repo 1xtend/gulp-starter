@@ -1,0 +1,27 @@
+// font-size in html
+$font-size: 16px;
+
+// px to rem
+@function rem($px) {
+  @return ($px / $font-size) + rem;
+}
+
+// px to %
+@function lh($lh, $px) {
+  $calc: ($lh / $px) * 100;
+
+  $result: round($calc);
+
+  @return #{$result} + '%';
+}
+
+// Properties for text
+@mixin textPropertiesColor($fz, $lh, $cl) {
+  font-size: rem($fz);
+  line-height: lh($lh, $fz);
+  color: $cl;
+}
+@mixin textProperties($fz, $lh) {
+  font-size: rem($fz);
+  line-height: lh($lh, $fz);
+}
