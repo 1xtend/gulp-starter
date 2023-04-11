@@ -5,3 +5,7 @@ flsFunctions.isWebp();
 /*===============Burger===============*/
 // import { burger } from './burger.js';
 // burger();
+
+/*===============Change Theme===============*/
+// import { changeTheme } from './changeTheme.js';
+// changeTheme();
