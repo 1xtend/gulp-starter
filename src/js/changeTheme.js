@@ -31,8 +31,17 @@ export const changeTheme = () => {
         html.classList.add(userTheme);
       }
     }
-
     setThemeClass();
+
+    // Is toggler checked
+    function setToggler() {
+      if (saveUserTheme === 'dark') {
+        themeToggler.checked = false;
+      } else if (saveUserTheme === 'light') {
+        themeToggler.checked = true;
+      }
+    }
+    setToggler();
 
     // Change theme function
     function changeTheme(saveTheme = false) {
