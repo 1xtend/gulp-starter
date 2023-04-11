@@ -13,10 +13,6 @@ export const burger = () => {
 
     // Close navbar by clicking on a link
     navbar.addEventListener('click', (e) => {
-      if (!burger.classList.contains('is-active') || !e.target.classList.contains('navbar__link')) {
-        return;
-      }
-
       if (e.target.classList.contains('navbar__link')) {
         removeClasses();
       }
