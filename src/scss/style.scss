@@ -19,6 +19,9 @@
 /*===============Global styles===============*/
 
 body {
+  &.is-fixed {
+    overflow: hidden;
+  }
 }
 
 .wrapper {

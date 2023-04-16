@@ -1,6 +1,6 @@
 /*===============isWebp function===============*/
-import * as flsFunctions from './modules/functions.js';
-flsFunctions.isWebp();
+import { isWebp } from './isWebp.js';
+isWebp();
 
 /*===============Burger===============*/
 // import { burger } from './burger.js';
@@ -9,3 +9,7 @@ flsFunctions.isWebp();
 /*===============Change Theme===============*/
 // import { changeTheme } from './changeTheme.js';
 // changeTheme();
+
+/*===============Modal function===============*/
+// import { modal } from './modal.js';
+// modal();
