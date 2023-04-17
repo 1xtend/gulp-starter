@@ -1,9 +1,11 @@
+// Import body and html
+import { mainElems } from './app.js';
+
 export const changeTheme = () => {
   window.addEventListener('load', windowLoad);
 
   function windowLoad() {
     // Html
-    const html = document.documentElement;
     const saveUserTheme = localStorage.getItem('user-theme');
 
     // Default theme on PC
@@ -26,9 +28,9 @@ export const changeTheme = () => {
     // Set theme class function
     function setThemeClass() {
       if (saveUserTheme) {
-        html.classList.add(saveUserTheme);
+        mainElems.html.classList.add(saveUserTheme);
       } else {
-        html.classList.add(userTheme);
+        mainElems.html.classList.add(userTheme);
       }
     }
     setThemeClass();
@@ -45,7 +47,7 @@ export const changeTheme = () => {
 
     // Change theme function
     function changeTheme(saveTheme = false) {
-      let currentTheme = html.classList.contains('light') ? 'light' : 'dark';
+      let currentTheme = mainElems.html.classList.contains('light') ? 'light' : 'dark';
       let newTheme;
 
       if (currentTheme === 'light') {
@@ -53,8 +55,8 @@ export const changeTheme = () => {
       } else if (currentTheme === 'dark') {
         newTheme = 'light';
       }
-      html.classList.remove(currentTheme);
-      html.classList.add(newTheme);
+      mainElems.html.classList.remove(currentTheme);
+      mainElems.html.classList.add(newTheme);
       saveTheme ? localStorage.setItem('user-theme', newTheme) : null;
     }
   }

@@ -1,4 +1,4 @@
-// Scss Functions
+/*===SCSS Functions===*/
 @import 'functions.scss';
 
 /*===Reset Styles===*/
@@ -7,21 +7,14 @@
 /*===Vars===*/
 @import 'vars.scss';
 
-/*===BEM Blocks===*/
-@import 'common.scss';
-
-/*===Header===*/
-@import 'header.scss';
-
-/*===Footer===*/
-@import 'footer.scss';
-
-/*===============Global styles===============*/
+/*===============GLOBAL STYLES===============*/
 
 body {
-  &.is-fixed {
-    overflow: hidden;
-  }
+  /*===For Modals===*/
+  // &.modal-lock {
+  //   overflow: hidden;
+  //   position: fixed;
+  // }
 }
 
 .wrapper {
@@ -32,3 +25,14 @@ body {
 
 .container {
 }
+
+/*===BEM Blocks===*/
+@import 'common.scss';
+
+/*===============SECTIONS===============*/
+
+/*===============Header===============*/
+@import 'header.scss';
+
+/*===============Footer===============*/
+@import 'footer.scss';

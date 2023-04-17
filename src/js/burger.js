@@ -1,6 +1,8 @@
+// Import body and html
+import { mainElems } from './app.js';
+
 // Burger
 export const burger = () => {
-  const body = document.body;
   const burger = document.querySelector('.burger');
   const navbar = document.querySelector('.navbar');
 
@@ -21,14 +23,14 @@ export const burger = () => {
 
   // Add Classes
   function addClasses() {
-    body.classList.toggle('is-fixed');
+    mainElems.body.classList.toggle('is-fixed');
     burger.classList.toggle('is-active');
     navbar.classList.toggle('is-active');
   }
 
   // Remove Classes
   function removeClasses() {
-    body.classList.remove('is-fixed');
+    mainElems.body.classList.remove('is-fixed');
     burger.classList.remove('is-active');
     navbar.classList.remove('is-active');
   }

@@ -1,150 +1,148 @@
-/*
-Button example
+// Import body and html
+import { mainElems } from './app.js';
 
-<button type="button" data-modal="modal_1">Open</button>
-*/
+// Button example
+// <button type="button" data-modal="myModal">Open</button>
 
 export const modal = () => {
-  // Vars
-  const html = document.documentElement;
-  const body = document.body;
+  // Elements with lock-padding class (with position: fixed)
+  const lockPaddingElems = document.querySelectorAll('.lock-padding');
 
-  const modalTogglers = document.querySelectorAll('[data-modal]');
-  const lockPadding = document.querySelectorAll('lock-padding');
-
-  const transitionValue = 300;
-
-  // Is required to save scroll position
+  // Save scroll postition
   let scrollPosition = 0;
 
-  // Is required for locking body
-  let unlock = true;
+  // Change padding-right while modal is opened
+  let bodyPadding = 0;
 
-  // Is required for closing modal by Escape
-  let isModalActive = false;
+  // Active modal (for closing)
+  let activeModal;
 
-  // Event listeners on elements with data-modal attribute
+  // Modal transition
+  const transitionTimeout = 300;
+
+  // Event listeners on modal togglers
+  const modalTogglers = document.querySelectorAll('[data-modal]');
   if (modalTogglers.length > 0) {
     modalTogglers.forEach((modalToggler) => {
       modalToggler.addEventListener('click', (e) => {
+        // Find modal by data attribute
+        const modalId = e.target.closest('[data-modal]').dataset.modal;
+        const currentModal = document.querySelector(`#${modalId}`);
+
+        openModal(currentModal);
+
         e.preventDefault();
-
-        const targetId = modalToggler.dataset.modal;
-        const currentModal = document.querySelector(`#${targetId}`);
-
-        modalOpen(currentModal);
-
-        saveScroll();
       });
     });
   }
 
-  // Close modal by click on element with close-modal class
+  // Event listeners on modal close buttons
   const modalCloseBtns = document.querySelectorAll('.close-modal');
   if (modalCloseBtns.length > 0) {
     modalCloseBtns.forEach((closeBtn) => {
       closeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+        // Close modal by pressing close-modal button
+        if (e.target.closest('.close-modal')) {
+          closeModal(e.target.closest('.modal'));
+        }
 
-        modalClose(closeBtn.closest('.modal'));
+        e.preventDefault();
       });
     });
   }
 
   // Open modal
-  function modalOpen(currentModal) {
-    if (currentModal && unlock) {
-      const modalActive = document.querySelector('.modal.is-active');
-      isModalActive = true;
+  function openModal(currentModal) {
+    const previousModal = document.querySelector('.modal.is-active');
 
-      if (modalActive) {
-        modalClose(modalActive, false);
-      } else {
-        bodyLock();
-      }
-
-      currentModal.classList.add('is-active');
-      currentModal.addEventListener('click', (e) => {
-        if (!e.target.closest('.modal__content')) {
-          modalClose(e.target.closest('.modal'));
-        }
-      });
+    // Close previous modal
+    if (previousModal) {
+      closeModal(previousModal, false);
+    } else {
+      disableScroll();
     }
+
+    currentModal.classList.add('is-active');
+
+    activeModal = currentModal;
+
+    // Add event listeners to close modal by pressing Escape or clicking on backdrop
+    window.addEventListener('keyup', closeModalByEscape);
+    currentModal.addEventListener('click', closeModalByBackdrop);
   }
 
   // Close modal
-  function modalClose(modalActive, doUnlock = true) {
-    if (unlock) {
-      modalActive.classList.remove('is-active');
-      isModalActive = false;
+  function closeModal(currentModal, doUnlock = true) {
+    currentModal.classList.remove('is-active');
 
-      if (doUnlock) {
-        bodyUnLock();
-        resetScroll();
-      }
+    // Enable scroll if doUnlock = true
+    if (doUnlock) {
+      enableScroll();
+    }
+
+    // Remove event listeners
+    window.removeEventListener('keyup', closeModalByEscape);
+    currentModal.removeEventListener('click', closeModalByBackdrop);
+
+    activeModal = null;
+  }
+
+  // Close modal be clicking on backdrop
+  function closeModalByBackdrop(e) {
+    if (!e.target.closest('.modal__body')) {
+      closeModal(activeModal);
     }
   }
 
-  // Lock body on desktop and mobile devices
-  function bodyLock() {
-    const lockPaddingValue =
-      window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
+  // Close modal by pressing Escape
+  function closeModalByEscape(e) {
+    if (e.code === 'Escape') {
+      closeModal(activeModal);
+    }
+  }
 
-    if (lockPadding.length > 0) {
-      lockPadding.forEach((lockElem) => {
-        lockElem.style.paddingRight = lockPaddingValue;
+  // Disable scroll
+  function disableScroll() {
+    // Save scrollTop
+    scrollPosition = window.scrollY;
+    mainElems.body.style.top = `-${scrollPosition}px`;
+    mainElems.html.style.scrollBehavior = 'unset';
+
+    // Add padding-right instead of scrollbar
+    bodyPadding = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
+    mainElems.body.style.paddingRight = bodyPadding;
+
+    // Add padding-right to lock-padding elements
+    if (lockPaddingElems.length > 0) {
+      lockPaddingElems.forEach((lockElem) => {
+        lockElem.style.paddingRight = bodyPadding;
       });
     }
 
-    body.style.paddingRight = lockPaddingValue;
-    body.classList.add('is-locked');
-
-    unlock = false;
-    setTimeout(() => {
-      unlock = true;
-    }, transitionValue);
+    // Lock body
+    mainElems.body.classList.add('modal-lock');
   }
 
-  // Unlock body on desktop and mobile devices
-  function bodyUnLock() {
+  // Enable scroll
+  function enableScroll() {
+    // Added timeout because of the transition
     setTimeout(() => {
-      if (lockPadding.length > 0) {
-        lockPadding.forEach((lockElem) => {
-          lockElem.style.paddingRight = '0px';
+      // Unlock body
+      mainElems.body.classList.remove('modal-lock');
+      mainElems.body.style.top = '';
+
+      // Scroll to saved value
+      window.scrollTo(0, scrollPosition);
+
+      // Remove padding-right to lock-padding elements
+      if (lockPaddingElems.length > 0) {
+        lockPaddingElems.forEach((lockElem) => {
+          lockElem.style.paddingRight = '';
         });
       }
 
-      body.style.paddingRight = '0px';
-      body.classList.remove('is-locked');
-    }, transitionValue);
-
-    unlock = false;
-    setTimeout(() => {
-      unlock = true;
-    }, transitionValue);
+      mainElems.html.style.scrollBehavior = '';
+      mainElems.body.style.paddingRight = '';
+    }, transitionTimeout);
   }
-
-  // Save element position
-  function saveScroll() {
-    scrollPosition = window.pageYOffset;
-    html.style.position = 'fixed';
-    html.style.top = -scrollPosition + 'px';
-  }
-
-  // Scroll to saved position and reset saved value
-  function resetScroll() {
-    setTimeout(() => {
-      html.style.top = '';
-      html.style.position = 'relative';
-      window.scrollTo(0, scrollPosition);
-    }, transitionValue);
-  }
-
-  // Close modal by clicking on Escape key
-  document.addEventListener('keyup', (e) => {
-    if (e.code === 'Escape' && isModalActive) {
-      const modalActive = document.querySelector('.modal.is-active');
-      modalClose(modalActive);
-    }
-  });
 };
