@@ -23,7 +23,10 @@ body {
   position: relative;
 }
 
-.container {
+[class*='__container'] {
+  // max-width: rem();
+  // padding: 0 15px;
+  // margin: 0 auto;
 }
 
 /*===BEM Blocks===*/

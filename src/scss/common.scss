@@ -45,3 +45,126 @@
 //     background: none;
 //   }
 // }
+
+/*===============Dropdown===============*/
+// body.mouse .dropdown:hover .dropdown__list {
+//   display: block;
+// }
+
+// body.mouse .dropdown:hover .dropdown__arrow {
+//   transform: rotate(180deg);
+// }
+
+// body.mouse .list-dropdown__item:hover .dropdown__sub-list {
+//   display: block;
+// }
+
+// body.mouse .list-dropdown__item:hover .list-dropdown__arrow {
+//   transform: rotate(180deg);
+//   right: rem(10);
+// }
+
+// body.touch .dropdown__list.is-active {
+//   display: block;
+// }
+// body.touch .dropdown__sub-list.is-active {
+//   display: block;
+// }
+
+// body.touch .dropdown-arrow.is-active {
+//   transform: rotate(180deg);
+// }
+
+// .dropdown-arrow {
+//   border-top: rem(10) solid #000;
+//   border-right: rem(10) solid transparent;
+//   border-left: rem(10) solid transparent;
+//   background: none;
+// }
+
+// .dropdown {
+//   position: relative;
+
+//   &__link {
+//     &:not(:last-child) {
+//       margin-right: rem(30);
+//     }
+//   }
+//   &__arrow {
+//     position: absolute;
+//     right: 0;
+//     top: rem(3);
+//   }
+//   &__list {
+//     display: none;
+//   }
+//   &__sub-list {
+//     display: none;
+//   }
+// }
+// .list-dropdown {
+//   position: absolute;
+//   z-index: 5;
+//   top: rem(15);
+//   left: 0;
+//   padding-top: rem(5);
+//   min-width: rem(170);
+
+//   @media (max-width: 767.98px) {
+//     min-width: none;
+//     width: 100%;
+//     position: relative;
+//     top: 0;
+//     padding-top: 0;
+//   }
+
+//   &__item {
+//     background-color: rgb(0, 225, 0);
+//     position: relative;
+
+//     @media (any-hover: hover) {
+//       &:hover {
+//         background-color: rgb(0, 188, 0);
+//       }
+//     }
+//   }
+//   &__link {
+//     display: inline-block;
+//     padding: rem(5) rem(10);
+//   }
+//   &__arrow {
+//     position: absolute;
+//     right: 0;
+//     top: rem(4);
+
+//     border-left: rem(10) solid #000;
+//     border-top: rem(10) solid transparent;
+//     border-bottom: rem(10) solid transparent;
+//   }
+// }
+// .sub-list-dropdown {
+//   position: absolute;
+//   z-index: 5;
+//   left: 100%;
+//   top: 0;
+
+//   @media (max-width: 767.98px) {
+//     position: relative;
+//     top: 0;
+//     left: 0;
+//   }
+
+//   &__item {
+//     background-color: rgb(255, 128, 128);
+
+//     @media (any-hover: hover) {
+//       &:hover {
+//         background-color: rgb(255, 93, 93);
+//       }
+//     }
+//   }
+//   &__link {
+//     display: inline-block;
+//     padding: rem(5) rem(10);
+//   }
+// }

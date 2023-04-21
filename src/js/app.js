@@ -19,3 +19,7 @@ isWebp();
 /*===============Modal function===============*/
 // import { modal } from './modal.js';
 // modal();
+
+/*===============Dropdown===============*/
+// import { dropdown } from './dropdown.js';
+// dropdown();
