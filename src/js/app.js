@@ -23,3 +23,6 @@ isWebp();
 /*===============Dropdown===============*/
 // import { dropdown } from './dropdown.js';
 // dropdown();
+
+/*===============Swiper===============*/
+// import { swiper } from './swiper/swiper.js';
