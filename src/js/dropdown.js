@@ -28,7 +28,6 @@ const isMobile = {
     );
   },
 };
-
 export const dropdown = () => {
   if (isMobile.any()) {
     mainElems.body.classList.add('touch');
@@ -39,22 +38,33 @@ export const dropdown = () => {
   }
 
   function touchDropdown() {
-    // Find all dropdowns by data attribute
-    const dropdowns = document.querySelectorAll('[data-dropdown]');
+    const dropdowns = document.querySelectorAll('.dropdown');
 
-    // If exist
-    if (dropdowns.length > 0) {
-      dropdowns.forEach((dropdown) => {
-        // Find arrow and list
-        const arrow = dropdown.querySelector('.dropdown-arrow');
-        const dropdownList = arrow.nextElementSibling;
+    dropdowns.forEach((dropdown) => {
+      const dropdownArrow = dropdown.querySelector('.dropdown-arrow');
 
-        // Toggle is-active class for arrow and list
-        arrow.addEventListener('click', (e) => {
-          arrow.classList.toggle('is-active');
-          dropdownList.classList.toggle('is-active');
-        });
+      dropdownArrow.addEventListener('click', (e) => {
+        const showDropdown = document.querySelector('.show-dropdown');
+
+        toggleDropdown(dropdown);
+
+        if (showDropdown && showDropdown !== dropdown) {
+          toggleDropdown(showDropdown);
+        }
       });
+    });
+
+    function toggleDropdown(dropdown) {
+      const dropdownList = dropdown.querySelector('.dropdown__list');
+      console.log(dropdownList);
+
+      if (dropdown.classList.contains('show-dropdown')) {
+        dropdownList.removeAttribute('style');
+        dropdown.classList.remove('show-dropdown');
+      } else {
+        dropdownList.style.height = dropdownList.scrollHeight + 'px';
+        dropdown.classList.add('show-dropdown');
+      }
     }
   }
 };
