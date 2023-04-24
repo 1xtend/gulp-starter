@@ -40,19 +40,21 @@ export const dropdown = () => {
   function touchDropdown() {
     const dropdowns = document.querySelectorAll('.dropdown');
 
-    dropdowns.forEach((dropdown) => {
-      const dropdownArrow = dropdown.querySelector('.dropdown-arrow');
+    if (dropdowns.length > 0) {
+      dropdowns.forEach((dropdown) => {
+        const dropdownArrow = dropdown.querySelector('.dropdown-arrow');
 
-      dropdownArrow.addEventListener('click', (e) => {
-        const showDropdown = document.querySelector('.show-dropdown');
+        dropdownArrow.addEventListener('click', (e) => {
+          const showDropdown = document.querySelector('.show-dropdown');
 
-        toggleDropdown(dropdown);
+          toggleDropdown(dropdown);
 
-        if (showDropdown && showDropdown !== dropdown) {
-          toggleDropdown(showDropdown);
-        }
+          if (showDropdown && showDropdown !== dropdown) {
+            toggleDropdown(showDropdown);
+          }
+        });
       });
-    });
+    }
 
     function toggleDropdown(dropdown) {
       const dropdownList = dropdown.querySelector('.dropdown__list');
