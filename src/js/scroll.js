@@ -16,8 +16,7 @@ export const anchorScroll = () => {
           window.scrollY;
 
         if (fixedHeader) {
-          let fixValue = scrollValue - fixedHeader.scrollHeight;
-          console.log();
+          let fixValue = scrollValue - fixedHeader.offsetHeight;
           scroll(fixValue);
         } else {
           scroll(scrollValue);
