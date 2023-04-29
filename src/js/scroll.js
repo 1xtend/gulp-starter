@@ -34,7 +34,10 @@ export const anchorScroll = () => {
         ) {
           window.scrollBy(0, scrollBy);
         } else {
-          window.scrollTo(0, scrollValue);
+          window.scrollTo({
+            top: scrollValue,
+            behavior: 'smooth',
+          });
           clearInterval(scroller);
         }
       }, animationTime / framesCount);
