@@ -26,3 +26,7 @@ isWebp();
 
 /*===============Swiper===============*/
 // import { swiper } from './swiper/swiper.js';
+
+/*===============Scroll===============*/
+// import { anchorScroll } from './scroll.js';
+// anchorScroll();
