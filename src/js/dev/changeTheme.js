@@ -1,5 +1,5 @@
 // Import body and html
-import { mainElems } from './app.js';
+import { mainElems } from '../app.js';
 
 export const changeTheme = () => {
   window.addEventListener('load', windowLoad);

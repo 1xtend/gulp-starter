@@ -1,4 +1,4 @@
-import { mainElems } from './app.js';
+import { mainElems } from '../app.js';
 
 // Link example -- <a href="#" data-scroll="about">About</a>
 

@@ -1,5 +1,5 @@
 // Import body and html
-import { mainElems } from './app.js';
+import { mainElems } from '../app.js';
 
 // Burger
 export const burger = () => {

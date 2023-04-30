@@ -5,28 +5,28 @@ export const mainElems = {
 };
 
 /*===============isWebp function===============*/
-import { isWebp } from './isWebp.js';
+import { isWebp } from './dev/isWebp.js';
 isWebp();
 
 /*===============Burger===============*/
-// import { burger } from './burger.js';
+// import { burger } from './dev/burger.js';
 // burger();
 
 /*===============Change Theme===============*/
-// import { changeTheme } from './changeTheme.js';
+// import { changeTheme } from './dev/changeTheme.js';
 // changeTheme();
 
 /*===============Modal function===============*/
-// import { modal } from './modal.js';
+// import { modal } from './dev/modal.js';
 // modal();
 
 /*===============Dropdown===============*/
-// import { dropdown } from './dropdown.js';
+// import { dropdown } from './dev/dropdown.js';
 // dropdown();
 
 /*===============Swiper===============*/
-// import { swiper } from './swiper/swiper.js';
+// import { swiper } from './dev/swiper/swiper.js';
 
 /*===============Scroll===============*/
-// import { anchorScroll } from './scroll.js';
+// import { anchorScroll } from './dev/scroll.js';
 // anchorScroll();

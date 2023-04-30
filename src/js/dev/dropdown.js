@@ -1,5 +1,5 @@
 // Import body and html
-import { mainElems } from './app.js';
+import { mainElems } from '../app.js';
 
 // Function that checks if the device has a touchscreen
 const isMobile = {

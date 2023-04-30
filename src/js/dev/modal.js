@@ -1,5 +1,5 @@
 // Import body and html
-import { mainElems } from './app.js';
+import { mainElems } from '../app.js';
 
 // Button example
 // <button type="button" data-modal="myModal">Open</button>

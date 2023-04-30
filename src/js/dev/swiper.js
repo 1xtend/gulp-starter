@@ -1,6 +1,8 @@
-import './swiper-bundle.min.js';
+import Swiper, { Navigation, Pagination } from 'swiper';
 
 export const swiper = new Swiper('.swiper', {
+  modules: [Navigation, Pagination],
+
   loop: true,
   autoHeight: true,
   slidesPerView: 1,
@@ -11,6 +13,9 @@ export const swiper = new Swiper('.swiper', {
   // mousewheel: true,
   // grabCursor: true,
   // effect: 'fade',
+  // fadeEffect: {
+  //   crossFade: true,
+  // },
   // effect: 'coverflow',
   // effect: 'creative',
 
@@ -24,7 +29,7 @@ export const swiper = new Swiper('.swiper', {
   // },
 
   pagination: {
-    el: '.swiper-pagination',
+    el: '.swiper-main__pagination',
 
     // Is clickable
     clickable: true,
