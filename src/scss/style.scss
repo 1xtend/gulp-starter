@@ -1,14 +1,14 @@
 /*===SCSS Functions===*/
-@import 'functions.scss';
+@import './dev/functions.scss';
 
 /*===Reset Styles===*/
-@import 'nullstyle.scss';
+@import './dev/nullstyle.scss';
 
 /*===Vars===*/
-@import 'vars.scss';
+@import './dev/vars.scss';
 
 /*===Swiper===*/
-// @import './swiper-bundle.min.scss';
+// @import './dev/swiper-bundle.min.scss';
 
 /*===============GLOBAL STYLES===============*/
 
@@ -33,12 +33,12 @@ body {
 }
 
 /*===BEM Blocks===*/
-@import 'common.scss';
+@import './dev/common.scss';
 
 /*===============SECTIONS===============*/
 
 /*===============Header===============*/
-@import 'header.scss';
+@import './parts/_header.scss';
 
 /*===============Footer===============*/
-@import 'footer.scss';
+@import './parts/_footer.scss';
