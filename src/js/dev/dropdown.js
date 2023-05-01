@@ -1,6 +1,22 @@
 // Import body and html
 import { mainElems } from '../app.js';
 
+/*
+
+EXAMPLE
+
+<li class="dropdown">
+  <a href="#" class="dropdown__link">link</a>
+  <button type="button" class="dropdown__arrow dropdown-arrow"></button>
+  <ul class="dropdown__list list-dropdown">
+    <li class="list-dropdown__item">
+      <a href="#" class="list-dropdown__link">link2</a>
+    </li>
+  </ul>
+</li>
+
+*/
+
 // Function that checks if the device has a touchscreen
 const isMobile = {
   Android: function () {

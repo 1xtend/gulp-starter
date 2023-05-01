@@ -1,6 +1,12 @@
 import { mainElems } from '../app.js';
 
-// Link example -- <a href="#" data-scroll="about">About</a>
+/*
+
+EXAMPLE
+
+<a href="#" data-scroll="about">About</a>
+
+*/
 
 export const anchorScroll = () => {
   const anchors = document.querySelectorAll('[data-scroll]');

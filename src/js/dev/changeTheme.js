@@ -5,7 +5,6 @@ export const changeTheme = () => {
   window.addEventListener('load', windowLoad);
 
   function windowLoad() {
-    // Html
     const saveUserTheme = localStorage.getItem('user-theme');
 
     // Default theme on PC

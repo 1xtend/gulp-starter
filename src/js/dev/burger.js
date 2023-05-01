@@ -1,6 +1,16 @@
 // Import body and html
 import { mainElems } from '../app.js';
 
+/*
+
+EXAMPLE
+
+<button type="button" class="burger">
+  <span></span>
+</button>
+
+*/
+
 // Burger
 export const burger = () => {
   const burger = document.querySelector('.burger');
