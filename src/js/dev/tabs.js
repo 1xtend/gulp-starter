@@ -1,7 +1,14 @@
 /*
 ? SCSS styles
 
-.tabs__content {
+.tab-toggler example {
+  &.active-tab-btn {
+    ? Example
+    border-color: #f2f2f2;
+  }
+}
+
+.tab-content example {
   display: none;
 
   &.active-tab {
@@ -9,12 +16,6 @@
   }
 }
 
-.tabs__btn {
-  &.active-tab-btn {
-    ? Example
-    border-color: #f2f2f2;
-  }
-}
 */
 
 export const tabs = () => {
