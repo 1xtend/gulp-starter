@@ -30,3 +30,7 @@ isWebp();
 /*===============Scroll===============*/
 // import { anchorScroll } from './dev/scroll.js';
 // anchorScroll();
+
+/*===============Tabs===============*/
+// import { tabs } from './dev/tabs.js';
+// tabs();
