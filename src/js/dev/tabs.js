@@ -18,31 +18,30 @@
 */
 
 export const tabs = () => {
-  // All tab togglers
-  const tabTogglers = document.querySelectorAll('[data-tab-target]');
+  const tabs = document.querySelectorAll('.tabs');
 
-  // If exist
-  if (tabTogglers.length > 0) {
-    tabTogglers.forEach((tabToggler) => {
-      tabToggler.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        // If active tab toggler was clicked nothing changes
-        if (e.target.closest('.active-tab-btn')) {
-          return;
-        }
-
-        // Remove classes from active tab and tab toggler
-        document.querySelector('.active-tab').classList.remove('active-tab');
-        document.querySelector('.active-tab-btn').classList.remove('active-tab-btn');
-
-        // Find tab by data attribute
-        const tab = document.querySelector(`#${tabToggler.dataset.tabTarget}`);
-
-        // Add active classes
-        tab.classList.add('active-tab');
-        tabToggler.classList.add('active-tab-btn');
+  if (tabs.length > 0) {
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', (e) => {
+        handleTab(tab, e);
       });
     });
+  }
+
+  function handleTab(tab, e) {
+    e.preventDefault();
+
+    if (e.target.closest('.active-tab-btn') || !e.target.closest('[data-tab-target]')) {
+      return;
+    }
+
+    tab.querySelector('.active-tab-btn').classList.remove('active-tab-btn');
+    tab.querySelector('.active-tab').classList.remove('active-tab');
+
+    const tabToggler = e.target.closest('[data-tab-target]');
+    const tabContent = tab.querySelector(`#${tabToggler.dataset.tabTarget}`);
+
+    tabToggler.classList.add('active-tab-btn');
+    tabContent.classList.add('active-tab');
   }
 };
