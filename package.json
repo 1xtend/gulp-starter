@@ -31,7 +31,6 @@
     "gulp-rename": "latest",
     "gulp-replace": "latest",
     "gulp-sass": "latest",
-    "gulp-svg-sprite": "latest",
     "gulp-ttf2woff2": "latest",
     "gulp-version-number": "latest",
     "gulp-webp": "latest",
