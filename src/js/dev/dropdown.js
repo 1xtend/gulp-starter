@@ -61,7 +61,6 @@ export const dropdown = () => {
 
     function toggleDropdown(dropdown) {
       const dropdownList = dropdown.querySelector('.dropdown__list');
-      console.log(dropdownList);
 
       if (dropdown.classList.contains('show-dropdown')) {
         dropdownList.removeAttribute('style');
