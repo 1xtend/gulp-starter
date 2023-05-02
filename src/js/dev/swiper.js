@@ -17,6 +17,13 @@ export const swiper = new Swiper('.swiper', {
   //   crossFade: true,
   // },
   // effect: 'coverflow',
+  // coverflowEffect: {
+  //   rotate: 0,
+  //   stretch: 0,
+  //   depth: 100,
+  //   modifier: 3,
+  //   slideShadows: true
+  // },
   // effect: 'creative',
 
   // autoplay: {
