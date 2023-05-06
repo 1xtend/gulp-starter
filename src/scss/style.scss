@@ -71,12 +71,12 @@ body {
   margin: 0 auto;
 }
 
-[class*='__right-container'] {
-  padding-left: calc((100% - $container) / 2 + $containerPadding);
-}
-[class*='__left-container'] {
-  padding-right: calc((100% - $container) / 2 + $containerPadding);
-}
+// [class*='__right-container'] {
+//   padding-left: calc((100% - $container) / 2 + $containerPadding);
+// }
+// [class*='__left-container'] {
+//   padding-right: calc((100% - $container) / 2 + $containerPadding);
+// }
 
 /*====================================================================================================*/
 //!---------BEM BLOCKS--------------------------------------------------------------------------------*/
