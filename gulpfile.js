@@ -11,6 +11,7 @@ global.app = {
 };
 
 import { copy } from './gulp/tasks/copy.js';
+import { favicon } from './gulp/tasks/favicon.js';
 import { reset } from './gulp/tasks/reset.js';
 import { html } from './gulp/tasks/html.js';
 import { server } from './gulp/tasks/server.js';
@@ -23,6 +24,7 @@ import { zip } from './gulp/tasks/zip.js';
 
 function watcher() {
   gulp.watch(path.watch.files, copy);
+  gulp.watch(path.watch.favicon, favicon);
   gulp.watch(path.watch.html, html);
   gulp.watch(path.watch.scss, scss);
   gulp.watch(path.watch.js, js);
@@ -34,7 +36,7 @@ function watcher() {
 const fonts = gulp.series(otfToTtf, ttfToWoff, fontStyle);
 
 // const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, scss, js, images, svgSprive));
-const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, scss, js, images));
+const mainTasks = gulp.series(fonts, gulp.parallel(copy, favicon, html, scss, js, images));
 
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
 const build = gulp.series(reset, mainTasks);
