@@ -19,6 +19,7 @@ HTML
 CSS
 
 .spoiler {
+  overflow: hidden;
 
   &.spoiler-active &__content {
     visibility: visible;
