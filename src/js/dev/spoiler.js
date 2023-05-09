@@ -74,6 +74,7 @@ export const spoiler = () => {
       // Hide spoiler.
       spoiler.classList.remove('spoiler-active');
       spoilerContent.style.maxHeight = 0;
+      spoilerContent.removeAttribute('style');
     }
 
     spoilerWrappers.forEach((spoilerWrapper) => {
