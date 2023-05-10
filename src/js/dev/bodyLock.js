@@ -51,7 +51,6 @@ export const bodyUnLock = () => {
   mainElems.body.classList.remove('body-lock');
   mainElems.body.style.top = '';
   mainElems.body.style.paddingRight = '';
-  mainElems.html.style.scrollBehavior = '';
 
   // Check if fixed elements exist.
   if (fixedElemsLength > 0) {
@@ -63,4 +62,5 @@ export const bodyUnLock = () => {
 
   // Scroll to saved position
   window.scrollTo(0, scrollPosition);
+  mainElems.html.style.scrollBehavior = '';
 };
