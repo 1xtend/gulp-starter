@@ -11,7 +11,6 @@ EXAMPLE
 export const anchorScroll = () => {
   const anchors = document.querySelectorAll('[data-scroll]');
   const fixedHeader = document.querySelector('.header.fixed');
-  console.log(fixedHeader);
 
   let anchorsLength = anchors.length;
 
