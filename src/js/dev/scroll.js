@@ -10,9 +10,11 @@ EXAMPLE
 
 export const anchorScroll = () => {
   const anchors = document.querySelectorAll('[data-scroll]');
-  const fixedHeader = document.querySelector('.header.fixed');
+  const fixedHeader = document.querySelector('.header-fixed');
 
-  if (anchors.length > 0) {
+  let anchorsLength = anchors.length;
+
+  if (anchorsLength > 0) {
     anchors.forEach((link) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -22,8 +24,8 @@ export const anchorScroll = () => {
           window.scrollY;
 
         if (fixedHeader) {
-          let fixValue = scrollValue - fixedHeader.offsetHeight;
-          scroll(fixValue);
+          let fixedValue = scrollValue - fixedHeader.offsetHeight;
+          scroll(fixedValue);
         } else {
           scroll(scrollValue);
         }
