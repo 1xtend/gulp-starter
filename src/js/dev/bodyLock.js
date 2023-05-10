@@ -10,6 +10,11 @@ let fixedElemsLength = fixedElems.length;
 
 // Body lock function.
 export const bodyLock = () => {
+  // Stop function if body has class body-lock
+  if (mainElems.body.classList.contains('body-lock')) {
+    return;
+  }
+
   // Save current position.
   scrollPosition = window.scrollY;
   // Changed scroll behavior (because can make bugs).
