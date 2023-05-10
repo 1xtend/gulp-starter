@@ -42,6 +42,11 @@ export const bodyLock = () => {
 
 // Body unlock function.
 export const bodyUnLock = () => {
+  // Stop function if body doesn't have class body-lock
+  if (!mainElems.body.classList.contains('body-lock')) {
+    return;
+  }
+
   // Remove all changes.
   mainElems.body.classList.remove('body-lock');
   mainElems.body.style.top = '';
