@@ -11,6 +11,7 @@ EXAMPLE
 export const anchorScroll = () => {
   const anchors = document.querySelectorAll('[data-scroll]');
   const fixedHeader = document.querySelector('.header.fixed');
+  console.log(fixedHeader);
 
   let anchorsLength = anchors.length;
 
@@ -18,10 +19,13 @@ export const anchorScroll = () => {
     anchors.forEach((link) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
+        const scrollElem = document.querySelector(`#${link.dataset.scroll}`);
 
-        let scrollValue =
-          document.querySelector(`#${link.dataset.scroll}`).getBoundingClientRect().top +
-          window.scrollY;
+        if (!scrollElem) {
+          return;
+        }
+
+        let scrollValue = scrollElem.getBoundingClientRect().top + window.scrollY;
 
         if (fixedHeader) {
           let fixedValue = scrollValue - fixedHeader.offsetHeight;
