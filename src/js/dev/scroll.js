@@ -1,4 +1,5 @@
 import { mainElems } from '../app.js';
+import { bodyLock, bodyUnLock } from './bodyFix.js';
 
 /*
 
@@ -9,42 +10,70 @@ EXAMPLE
 */
 
 export const anchorScroll = () => {
+  // Find all anchor links.
   const anchors = document.querySelectorAll('[data-scroll]');
-  const fixedHeader = document.querySelector('.header.fixed');
 
-  let anchorsLength = anchors.length;
+  // If anchor links exist.
+  if (anchors.length > 0) {
+    // If header is fixed.
+    const fixedHeader = document.querySelector('.header.fixed');
+    const animationTime = 300;
+    const framesCount = 20;
 
-  if (anchorsLength > 0) {
     anchors.forEach((link) => {
+      // Event listeners on anchor links.
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const scrollElem = document.querySelector(`#${link.dataset.scroll}`);
 
-        if (!scrollElem) {
-          return;
-        }
+        // Px from top to element.
+        let scrollValue = 0;
+        // Element to scroll to.
+        let scrollElem = document.querySelector(`#${link.dataset.scroll}`);
 
-        let scrollValue = scrollElem.getBoundingClientRect().top + window.scrollY;
+        // If burger has is-active class add timeout to give time burger to close menu.
+        if (document.querySelector('.burger').classList.contains('is-active')) {
+          const scrollTimeout = setTimeout(() => {
+            // Count px from top to element.
+            scrollValue = scrollElem.getBoundingClientRect().top + window.scrollY;
 
-        if (fixedHeader) {
-          let fixedValue = scrollValue - fixedHeader.offsetHeight;
-          scroll(fixedValue);
+            // If header is fixed, count its height.
+            if (fixedHeader) {
+              let fixValue = scrollValue - fixedHeader.offsetHeight;
+              scroll(fixValue);
+            } else {
+              scroll(scrollValue);
+            }
+            clearTimeout(scrollTimeout);
+          }, animationTime);
         } else {
-          scroll(scrollValue);
+          // Count px from top to element.
+          scrollValue = scrollElem.getBoundingClientRect().top + window.scrollY;
+
+          // If header is fixed, count its height.
+          if (fixedHeader) {
+            let fixValue = scrollValue - fixedHeader.offsetHeight;
+            scroll(fixValue);
+          } else {
+            scroll(scrollValue);
+          }
         }
       });
     });
 
-    function scroll(scrollValue, animationTime = 300, framesCount = 20) {
+    function scroll(scrollValue) {
       const scroller = setInterval(() => {
+        // Count how much to scroll for 1 cycle.
         let scrollBy = scrollValue / framesCount;
 
+        // if the number of pixels for scrolling in 1 cycle is more than the distance to the element and the bottom of the page has not been reached.
         if (
           scrollBy > window.scrollY - scrollValue &&
           window.innerHeight + window.scrollY < mainElems.body.offsetHeight
         ) {
+          // Then scroll by the number of pixels that corresponds to one measure.
           window.scrollBy(0, scrollBy);
         } else {
+          // Otherwise, we get to the element and exit the interval.
           window.scrollTo({
             top: scrollValue,
             behavior: 'smooth',

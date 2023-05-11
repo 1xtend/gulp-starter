@@ -1,33 +1,29 @@
 // Import body and html
 import { mainElems } from '../app.js';
+import { bodyLock, bodyUnLock } from './bodyFix.js';
 
 // Button example
-// <button type="button" data-modal="myModal">Open</button>
+// <button type="button" data-open-modal="myModal">Open</button>
 
 export const modal = () => {
-  // Elements with lock-padding class (with position: fixed)
-  const lockPaddingElems = document.querySelectorAll('.lock-padding');
-
-  // Save scroll postition
-  let scrollPosition = 0;
-
-  // Change padding-right while modal is opened
-  let bodyPadding = 0;
-
-  // Active modal (for closing)
+  // Active modal (for closing).
   let activeModal;
+  let previousModal;
 
-  // Modal transition
+  // Modal transition.
   const transitionTimeout = 300;
 
-  // Event listeners on modal togglers
-  const modalTogglers = document.querySelectorAll('[data-modal]');
-  if (modalTogglers.length > 0) {
+  // Event listeners on modal togglers.
+  const modalTogglers = document.querySelectorAll('[data-open-modal]');
+
+  let modalTogglersLength = modalTogglers.length;
+
+  if (modalTogglersLength > 0) {
     modalTogglers.forEach((modalToggler) => {
       modalToggler.addEventListener('click', (e) => {
-        // Find modal by data attribute
-        const modalId = e.target.closest('[data-modal]').dataset.modal;
-        const currentModal = document.querySelector(`#${modalId}`);
+        // Find modal by data attribute.
+        const modalId = e.target.closest('[data-open-modal]').dataset.openModal;
+        const currentModal = document.querySelector(`[data-modal="${modalId}"]`);
 
         openModal(currentModal);
 
@@ -36,113 +32,55 @@ export const modal = () => {
     });
   }
 
-  // Event listeners on modal close buttons
-  const modalCloseBtns = document.querySelectorAll('.close-modal');
-  if (modalCloseBtns.length > 0) {
-    modalCloseBtns.forEach((closeBtn) => {
-      closeBtn.addEventListener('click', (e) => {
-        // Close modal by pressing close-modal button
-        if (e.target.closest('.close-modal')) {
-          closeModal(e.target.closest('.modal'));
-        }
-
-        e.preventDefault();
-      });
-    });
-  }
-
-  // Open modal
+  // Open modal.
   function openModal(currentModal) {
-    const previousModal = document.querySelector('.modal.is-active');
+    previousModal = document.querySelector('.active-modal');
 
-    // Close previous modal
+    // Close previous modal.
     if (previousModal) {
       closeModal(previousModal, false);
     } else {
-      disableScroll();
+      bodyLock();
     }
 
-    currentModal.classList.add('is-active');
-
+    currentModal.classList.add('active-modal');
     activeModal = currentModal;
 
-    // Add event listeners to close modal by pressing Escape or clicking on backdrop
+    // Add event listeners to close modal by pressing Escape or clicking on backdrop.
     window.addEventListener('keyup', closeModalByEscape);
-    currentModal.addEventListener('click', closeModalByBackdrop);
+    currentModal.addEventListener('click', modalHandleClick);
   }
 
   // Close modal
   function closeModal(currentModal, doUnlock = true) {
-    currentModal.classList.remove('is-active');
+    currentModal.classList.remove('active-modal');
 
-    // Enable scroll if doUnlock = true
+    // Enable scroll if doUnlock = true.
     if (doUnlock) {
-      enableScroll();
+      setTimeout(() => {
+        bodyUnLock();
+      }, transitionTimeout);
     }
 
-    // Remove event listeners
+    // Remove event listeners.
     window.removeEventListener('keyup', closeModalByEscape);
-    currentModal.removeEventListener('click', closeModalByBackdrop);
+    currentModal.removeEventListener('click', modalHandleClick);
 
     activeModal = null;
   }
 
-  // Close modal be clicking on backdrop
-  function closeModalByBackdrop(e) {
-    if (!e.target.closest('.modal__body')) {
-      closeModal(activeModal);
-    }
-  }
-
-  // Close modal by pressing Escape
+  // Close modal by pressing Escape.
   function closeModalByEscape(e) {
     if (e.code === 'Escape') {
       closeModal(activeModal);
     }
   }
 
-  // Disable scroll
-  function disableScroll() {
-    // Save scrollTop
-    scrollPosition = window.scrollY;
-    mainElems.body.style.top = `-${scrollPosition}px`;
-    mainElems.html.style.scrollBehavior = 'unset';
-
-    // Add padding-right instead of scrollbar
-    bodyPadding = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
-    mainElems.body.style.paddingRight = bodyPadding;
-
-    // Add padding-right to lock-padding elements
-    if (lockPaddingElems.length > 0) {
-      lockPaddingElems.forEach((lockElem) => {
-        lockElem.style.paddingRight = bodyPadding;
-      });
+  // Close modal by clicking on backdrop or close btn.
+  function modalHandleClick(e) {
+    if (!e.target.closest('[data-modal-body]') || e.target.closest('[data-modal-close]')) {
+      e.preventDefault();
+      closeModal(activeModal);
     }
-
-    // Lock body
-    mainElems.body.classList.add('modal-lock');
-  }
-
-  // Enable scroll
-  function enableScroll() {
-    // Added timeout because of the transition
-    setTimeout(() => {
-      // Unlock body
-      mainElems.body.classList.remove('modal-lock');
-      mainElems.body.style.top = '';
-
-      // Scroll to saved value
-      window.scrollTo(0, scrollPosition);
-
-      // Remove padding-right to lock-padding elements
-      if (lockPaddingElems.length > 0) {
-        lockPaddingElems.forEach((lockElem) => {
-          lockElem.style.paddingRight = '';
-        });
-      }
-
-      mainElems.html.style.scrollBehavior = '';
-      mainElems.body.style.paddingRight = '';
-    }, transitionTimeout);
   }
 };
