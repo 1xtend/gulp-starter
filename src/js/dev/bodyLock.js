@@ -10,7 +10,7 @@ let fixedElemsLength = fixedElems.length;
 
 // Body lock function.
 export const bodyLock = () => {
-  // Stop function if body has class body-lock
+  // Stop function if body has class body-lock.
   if (mainVars.body.classList.contains('body-lock')) {
     return;
   }
@@ -42,7 +42,7 @@ export const bodyLock = () => {
 
 // Body unlock function.
 export const bodyUnLock = () => {
-  // Stop function if body doesn't have class body-lock
+  // Stop function if body doesn't have class body-lock.
   if (!mainVars.body.classList.contains('body-lock')) {
     return;
   }
@@ -55,12 +55,12 @@ export const bodyUnLock = () => {
   // Check if fixed elements exist.
   if (fixedElemsLength > 0) {
     fixedElems.forEach((fixedElem) => {
-      // Remove padding right
+      // Remove padding right.
       fixedElem.style.paddingRight = '';
     });
   }
 
-  // Scroll to saved position
+  // Scroll to saved position.
   window.scrollTo(0, scrollPosition);
   mainVars.html.style.scrollBehavior = '';
 };

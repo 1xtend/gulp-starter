@@ -1,5 +1,4 @@
-// Import body and html
-import { mainVars } from '../app.js';
+// Import body and html.
 import { bodyLock, bodyUnLock } from './bodyFix.js';
 
 /*
@@ -12,7 +11,7 @@ EXAMPLE
 
 */
 
-// Burger
+// Burger.
 export const burger = () => {
   // Find a burger.
   const burger = document.querySelector('.burger');
@@ -21,7 +20,7 @@ export const burger = () => {
   if (burger) {
     const navbar = document.querySelector('.navbar');
 
-    // Event listener on a burger
+    // Event listener on a burger.
     burger.addEventListener('click', (e) => {
       // If burger has is-active class hide menu, else show menu.
       if (!burger.classList.contains('is-active')) {

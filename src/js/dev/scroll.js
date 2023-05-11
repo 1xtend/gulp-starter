@@ -1,5 +1,4 @@
 import { mainVars } from '../app.js';
-import { bodyLock, bodyUnLock } from './bodyFix.js';
 
 /*
 
