@@ -1,4 +1,4 @@
-import { mainElems } from '../app.js';
+import { mainVars } from '../app.js';
 import { bodyLock, bodyUnLock } from './bodyFix.js';
 
 /*
@@ -17,7 +17,6 @@ export const anchorScroll = () => {
   if (anchors.length > 0) {
     // If header is fixed.
     const fixedHeader = document.querySelector('.header.fixed');
-    const animationTime = 300;
     const framesCount = 20;
 
     anchors.forEach((link) => {
@@ -44,7 +43,7 @@ export const anchorScroll = () => {
               scroll(scrollValue);
             }
             clearTimeout(scrollTimeout);
-          }, animationTime);
+          }, mainVars.transitionTime);
         } else {
           // Count px from top to element.
           scrollValue = scrollElem.getBoundingClientRect().top + window.scrollY;
@@ -68,7 +67,7 @@ export const anchorScroll = () => {
         // if the number of pixels for scrolling in 1 cycle is more than the distance to the element and the bottom of the page has not been reached.
         if (
           scrollBy > window.scrollY - scrollValue &&
-          window.innerHeight + window.scrollY < mainElems.body.offsetHeight
+          window.innerHeight + window.scrollY < mainVars.body.offsetHeight
         ) {
           // Then scroll by the number of pixels that corresponds to one measure.
           window.scrollBy(0, scrollBy);
@@ -80,7 +79,7 @@ export const anchorScroll = () => {
           });
           clearInterval(scroller);
         }
-      }, animationTime / framesCount);
+      }, mainVars.transitionTime / framesCount);
     }
   }
 };

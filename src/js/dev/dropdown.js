@@ -1,5 +1,5 @@
 // Import body and html
-import { mainElems } from '../app.js';
+import { mainVars } from '../app.js';
 
 /*
 
@@ -47,11 +47,11 @@ const isMobile = {
 
 export const dropdown = () => {
   if (isMobile.any()) {
-    mainElems.body.classList.add('touch');
+    mainVars.body.classList.add('touch');
 
     touchDropdown();
   } else {
-    mainElems.body.classList.add('mouse');
+    mainVars.body.classList.add('mouse');
   }
 
   function touchDropdown() {

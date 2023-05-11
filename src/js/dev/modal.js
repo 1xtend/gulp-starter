@@ -1,5 +1,5 @@
 // Import body and html
-import { mainElems } from '../app.js';
+import { mainVars } from '../app.js';
 import { bodyLock, bodyUnLock } from './bodyFix.js';
 
 // Button example
@@ -9,9 +9,6 @@ export const modal = () => {
   // Active modal (for closing).
   let activeModal;
   let previousModal;
-
-  // Modal transition.
-  const transitionTimeout = 300;
 
   // Event listeners on modal togglers.
   const modalTogglers = document.querySelectorAll('[data-open-modal]');
@@ -59,7 +56,7 @@ export const modal = () => {
     if (doUnlock) {
       setTimeout(() => {
         bodyUnLock();
-      }, transitionTimeout);
+      }, mainVars.transitionTime);
     }
 
     // Remove event listeners.

@@ -1,5 +1,5 @@
 // Import body and html
-import { mainElems } from '../app.js';
+import { mainVars } from '../app.js';
 
 export const changeTheme = () => {
   window.addEventListener('load', windowLoad);
@@ -27,9 +27,9 @@ export const changeTheme = () => {
     // Set theme class function
     function setThemeClass() {
       if (saveUserTheme) {
-        mainElems.html.classList.add(saveUserTheme);
+        mainVars.html.classList.add(saveUserTheme);
       } else {
-        mainElems.html.classList.add(userTheme);
+        mainVars.html.classList.add(userTheme);
       }
     }
     setThemeClass();
@@ -46,7 +46,7 @@ export const changeTheme = () => {
 
     // Change theme function
     function changeTheme(saveTheme = false) {
-      let currentTheme = mainElems.html.classList.contains('light') ? 'light' : 'dark';
+      let currentTheme = mainVars.html.classList.contains('light') ? 'light' : 'dark';
       let newTheme;
 
       if (currentTheme === 'light') {
@@ -54,8 +54,8 @@ export const changeTheme = () => {
       } else if (currentTheme === 'dark') {
         newTheme = 'light';
       }
-      mainElems.html.classList.remove(currentTheme);
-      mainElems.html.classList.add(newTheme);
+      mainVars.html.classList.remove(currentTheme);
+      mainVars.html.classList.add(newTheme);
       saveTheme ? localStorage.setItem('user-theme', newTheme) : null;
     }
   }

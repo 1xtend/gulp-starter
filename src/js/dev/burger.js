@@ -1,5 +1,5 @@
 // Import body and html
-import { mainElems } from '../app.js';
+import { mainVars } from '../app.js';
 import { bodyLock, bodyUnLock } from './bodyFix.js';
 
 /*
