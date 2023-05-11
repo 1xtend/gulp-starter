@@ -1,0 +1,44 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: rem(30) rem(10);
+  display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 50;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+  &.active-modal {
+    opacity: 1;
+    visibility: visible;
+  }
+  &.active-modal &__body {
+    transform: scale(1);
+  }
+
+  &__body {
+    position: relative;
+    width: rem(500);
+    max-width: 100%;
+    background-color: #fff;
+    margin: auto;
+    padding: rem(20);
+    transform: scale(0.8);
+
+    transition: transform 0.3s ease-in-out;
+  }
+  &__close {
+    position: absolute;
+    top: rem(15);
+    right: rem(15);
+    background: none;
+  }
+}
