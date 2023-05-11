@@ -18,45 +18,42 @@ export const anchorScroll = () => {
     const fixedHeader = document.querySelector('.header.fixed');
     const framesCount = 20;
 
+    // Px from top to element.
+    let scrollValue = 0;
+
     anchors.forEach((link) => {
       // Event listeners on anchor links.
       link.addEventListener('click', (e) => {
         e.preventDefault();
 
-        // Px from top to element.
-        let scrollValue = 0;
         // Element to scroll to.
         let scrollElem = document.querySelector(`#${link.dataset.scroll}`);
 
         // If burger has is-active class add timeout to give time burger to close menu.
         if (document.querySelector('.burger').classList.contains('is-active')) {
           const scrollTimeout = setTimeout(() => {
-            // Count px from top to element.
-            scrollValue = scrollElem.getBoundingClientRect().top + window.scrollY;
+            handleScroll(scrollElem);
 
-            // If header is fixed, count its height.
-            if (fixedHeader) {
-              let fixValue = scrollValue - fixedHeader.offsetHeight;
-              scroll(fixValue);
-            } else {
-              scroll(scrollValue);
-            }
             clearTimeout(scrollTimeout);
-          }, mainVars.transitionTime);
+          }, animationTime);
         } else {
-          // Count px from top to element.
-          scrollValue = scrollElem.getBoundingClientRect().top + window.scrollY;
-
-          // If header is fixed, count its height.
-          if (fixedHeader) {
-            let fixValue = scrollValue - fixedHeader.offsetHeight;
-            scroll(fixValue);
-          } else {
-            scroll(scrollValue);
-          }
+          handleScroll(scrollElem);
         }
       });
     });
+
+    function handleScroll(scrollElem) {
+      // Count px from top to element.
+      scrollValue = scrollElem.getBoundingClientRect().top + window.scrollY;
+
+      // If header is fixed, count its height.
+      if (fixedHeader) {
+        let fixValue = scrollValue - fixedHeader.offsetHeight;
+        scroll(fixValue);
+      } else {
+        scroll(scrollValue);
+      }
+    }
 
     function scroll(scrollValue) {
       const scroller = setInterval(() => {
