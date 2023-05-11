@@ -35,7 +35,7 @@ export const anchorScroll = () => {
             handleScroll(scrollElem);
 
             clearTimeout(scrollTimeout);
-          }, animationTime);
+          }, mainVars.transitionTime);
         } else {
           handleScroll(scrollElem);
         }
