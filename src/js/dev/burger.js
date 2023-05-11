@@ -1,5 +1,5 @@
 // Import body and html.
-import { bodyLock, bodyUnLock } from './bodyFix.js';
+import { bodyLock, bodyUnLock } from './bodyLock.js';
 
 /*
 

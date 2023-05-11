@@ -1,6 +1,6 @@
 // Import body and html
 import { mainVars } from '../app.js';
-import { bodyLock, bodyUnLock } from './bodyFix.js';
+import { bodyLock, bodyUnLock } from './bodyLock.js';
 
 // Button example
 // <button type="button" data-open-modal="myModal">Open</button>
