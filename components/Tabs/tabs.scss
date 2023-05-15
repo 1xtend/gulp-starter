@@ -1,0 +1,22 @@
+.tabs-block {
+  &__togglers {
+  }
+  &__toggler {
+    background-color: blue;
+
+    &.active-tab-toggler {
+      background-color: red;
+    }
+  }
+
+  &__box {
+  }
+  &__content {
+    padding: rem(10);
+    display: none;
+
+    &.active-tab-content {
+      display: block;
+    }
+  }
+}
