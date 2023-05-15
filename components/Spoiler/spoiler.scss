@@ -1,0 +1,32 @@
+.block {
+}
+
+.spoiler-block {
+  overflow: hidden;
+
+  &:not(:last-child) {
+    margin-bottom: rem(20);
+  }
+
+  &.spoiler-active &__content {
+    opacity: 1;
+  }
+
+  &__toggler {
+    width: 100%;
+    text-align: left;
+    font-size: rem(18);
+    padding: rem(5);
+    background-color: #c6c6c6;
+  }
+  &__content {
+    max-height: 0;
+    opacity: 0;
+
+    transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+  }
+  &__wrapper {
+    padding: rem(10);
+    background-color: green;
+  }
+}
