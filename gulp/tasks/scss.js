@@ -21,13 +21,12 @@ export const scss = () => {
           })
         )
       )
-      // .pipe(app.plugins.replace(/@img\//g, '../img/'))
-      .pipe(app.plugins.replace('url("@img', 'url("../img'))
       .pipe(
         sass({
           outputStyle: 'expanded',
         })
       )
+      .pipe(app.plugins.replace(/@img\//g, '../img/'))
       .pipe(app.plugins.if(app.isBuild, groupCssMediaQueries()))
       .pipe(
         webpcss({
